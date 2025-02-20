@@ -56,10 +56,28 @@ DDD разбивает всю модель предметной области (
     
 . Управление персоналом.
 
+== Full User Flow diagram
+
+image:out/Full_UserFlowDiagram/User-Client Shopping.svg[]
+
 == Декомпозированные микросервисы
 
 . Catalog service
 
 . Order service
 
+. Staff management service
+
+. CRM service
+
+. Payment service
+
+. Storehouse service
+
+. Delivery service
+
 . 
+
+== Диаграмма контекста системы 
+
+image:out/context_domain/Basic Sale.svg[context diagram]

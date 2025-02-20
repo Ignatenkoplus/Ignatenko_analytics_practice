@@ -1,0 +1,7 @@
+@startuml User-Client Shopping 
+start
+if(<color: blue >Выбор способа покупки) is (Офлайн покупка) then
+    :Вход в магазин;
+else 
+    :Вход на сайт магазина; 
+@enduml 
