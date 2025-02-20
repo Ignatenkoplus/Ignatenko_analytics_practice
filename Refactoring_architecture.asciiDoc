@@ -56,7 +56,7 @@ DDD разбивает всю модель предметной области (
     
 . Управление персоналом.
 
-== Full User Flow diagram
+== Full User Flow diagram "AS IS"
 
 image:out/Full_UserFlowDiagram/User-Client Shopping.svg[]
 
