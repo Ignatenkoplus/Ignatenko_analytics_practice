@@ -1,0 +1,17 @@
+@startuml Basic Sale
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+!define DEVICONS https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/devicons
+!define FONTAWESOME https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/font-awesome-5
+!include FONTAWESOME/users.puml
+
+Person(users, "Клиенты пользователи", $sprite="users")
+System_Boundary(c1, "Система компании") {
+    Container(s2, "Внутренняя система компании")
+}
+System(s3, "Система партнеров")
+
+Rel(users, s2, "Uses", "REST HTTPS")
+Rel(s2, s3, "Uses", "REST HTTPS")
+@enduml
