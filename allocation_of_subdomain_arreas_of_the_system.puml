@@ -27,7 +27,7 @@ Enterprise_Boundary(s1 , "The Store's System") {
 
     System_Boundary(s7, "Domain: \nERP System", "Управление внутренними процессами") {
         Container(subdomain_8, "Subdomain: \nDelivery Service")
-        Container(subdomain_9, "Subdomain: \nDelivery Service")
+        Container(subdomain_9, "Subdomain: \nTracking Delivery Service")
     }
 }
 
