@@ -36,7 +36,7 @@ DDD разбивает всю модель предметной области (
 
 === CRM service
 
-Управление информацией о клиентах, история покупок, программы лояльности.
+Управление информацией о клиентах, историях покупок, программы лояльности.
 
 === Payment service
 
@@ -62,22 +62,26 @@ image:out/Full_UserFlowDiagram/User-Client Shopping.svg[]
 
 == Декомпозированные микросервисы
 
-. Catalog service
+. Catalog service - сервис товаров  
 
-. Order service
+. Order service - сервис заказов 
 
-. Staff management service
+. CRM service сервис информации по клиентам 
 
-. CRM service
+. Payment service сервис оплат 
 
-. Payment service
+. Storehouse service сервис складов (Внутренний)
 
-. Storehouse service
+. Delivery service - Сервис доставки 
 
-. Delivery service
+. Tracking delivery service - Сервис трекинга доставки 
 
-. 
+. Notification service - Сервис уведомлений пользователей о статусе заказов, акциях, изменениях доставки и другой важной информации
 
-== Диаграмма контекста системы 
+. Authentication service - Сервис регистрации полльзователей в системе 
+
+. Partner Integration Service - Сервис интеграции с внешними поставщиками
+
+== Диаграмма контекста системы C-1
 
 image:out/context_domain/Basic Sale.svg[context diagram]
