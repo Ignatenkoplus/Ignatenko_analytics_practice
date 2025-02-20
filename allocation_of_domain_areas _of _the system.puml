@@ -1,0 +1,15 @@
+@startuml Доменные зоны
+header Выделение доменных областей системы "Leroy Merlin" 
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+Enterprise_Boundary(s1 , "The Store's system"){
+    System_Boundary(s2 , "Domain: Catalog of product service", "Управление информацией о товарах, ценами, описаниями, ассортиментом и наличием на складе")
+    System_Boundary(s3, "Domain: Order service", "Обработка заказов как из интернет-магазина, так и из оффлайн торговых точек")
+    System_Boundary(s4, "Domain: Inventory service", "Управление собственными складами компании и складами поставщиков" )
+    System_Boundary(s5, "Domain: CRM service", "Управление информацией о клиентах, историях покупок, программы лояльности")
+    System_Boundary(s6, "Domain: Payment service", "Обработка платежей, интеграция с платежными системами")
+    System_Boundary(s7, "Domain: ERP service", "Управление внутренними процессами")
+}
+Enterprise_Boundary(s8, "Partner Integration System")
+
+@enduml
