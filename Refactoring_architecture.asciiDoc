@@ -63,17 +63,17 @@ image:out/allocation_of_domain_areas _of _the system/Доменные зоны.s
 
 == Декомпозированные микросервисы
 
-. *Catalog Service* - сервис товаров  
+. *Catalog Service* - Сервис выбора товаров  
 
-. *Order Service* - сервис заказов 
+. *Order Service* - Сервис  регистрации заказов 
 
-. *CRM Service* - сервис информации по клиентам 
+. *Product support* - Сервис службы поддержки клиентов 
 
-. *Payment Service* - сервис оплат 
+. *Payment Service* - Сервис проведения оплат 
 
-. *Storehouse Service* - сервис складов (Внутренний)
+. *Storehouse Service* - Сервис автоматизации складов (Внутренний)
 
-. *Delivery Service* - Сервис доставки 
+. *Delivery Service* - Сервис осуществления доставки 
 
 . *Tracking delivery Service* - Сервис трекинга доставки 
 

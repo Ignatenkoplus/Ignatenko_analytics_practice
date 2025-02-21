@@ -30,10 +30,12 @@ Enterprise_Boundary(s1 , "The Store's System") {
         Container(subdomain_9, "Subdomain: \nTracking Delivery Service")
     }
 }
-
-Enterprise_Boundary(s8, "Partner \nIntegration System") {
+Enterprise_Boundary(s9, "\nIntegration System"){
     Container(subdomain_10, "Domain: \nPartner Integration Service")
+}
+Enterprise_Boundary(s8, "Partner \nIntegration System") {
     Container(subdomain_11, "Domain: \nTracking delivery Service")
 }
+
 
 @enduml
