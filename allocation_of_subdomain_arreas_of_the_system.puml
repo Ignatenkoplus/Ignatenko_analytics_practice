@@ -1,0 +1,38 @@
+@startuml Поддоменные зоны
+header Выделение поддоменных областей системы "Leroy Merlin" 
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+Enterprise_Boundary(s1 , "The Store's System") {
+    System_Boundary(s2 , "Domain: \nCatalog of product System") {
+        Container(subdomain_1, "Subdomain: \nCatalog Service")
+    }
+    System_Boundary(s3, "Domain: \nOrder System") {
+        Container(subdomain_2, "Subdomain: \nOrder Service")
+    }
+    System_Boundary(s5, "Domain: \nCRM System") {
+        Container(subdomain_6, "Subdomain: User account Service")
+    }
+    System_Boundary(s, "Domain: Authorization Service") {
+        Container(subdomain_4, "Subdomain: \nNotification Service")
+        Container(subdomain_5, "Subdomain: \nAuthorization Service")
+    }
+    System_Boundary(s6, "Domain: \nPayment System") {
+        Container(subdomain_7, "Subdomain: \nPayment Service")
+    }
+    Enterprise_Boundary(s9, "\nIntegration System"){
+    Container(subdomain_10, "Domain: \nPartner Integration Service")
+    }
+    System_Boundary(s7, "Domain: \nERP System") {
+        Container(subdomain_8, "Subdomain: \nDelivery Service")
+        Container(subdomain_9, "Subdomain: \nTracking Delivery Service")
+        Container(subdomain_12, "Subdomain: Stuff_User account Service")
+        Container(subdomain_3, "Subdomain: \nStorehouse Service")
+        Container(subdomain_13, "Subdomain: Product support")
+    }
+}
+Enterprise_Boundary(s8, "Partner \nIntegration System") {
+    Container(subdomain_11, "Domain: \nPartner Service")
+    }
+
+
+@enduml
