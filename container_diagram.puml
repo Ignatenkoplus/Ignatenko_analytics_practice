@@ -6,16 +6,28 @@ header container diagram
 
 Person(users, "Клиенты-пользователи", $sprite="users")
 System_Boundary(s1 , "The Store's System") {
+    System_Boundary(s21, "Authorization System"){
+        Container(subdomain_4, "\nNotification Service", Service, "Сервис уведомлений пользователей" )
+        Container(subdomain_5, "\nAuthorization Service", Service, "Сервис Регистрации/Авторизации полльзователей в системе")
+        }
+    System_Boundary(s9, "\nIntegration System"){
+    Container(subdomain_10, "\nPartner Integration Service", Service, "Сервис интеграции с системой партнеров")
+    ContainerDb(db19, Database, Postgre SQL/Slave, "Хранит промежуточную информацию о заказах клиентов")
+    }
     System(subdomain_0, "Web-site")
     System(api, "API-Gateway")
     SystemQueue(Broker, Apache kafka, "Распределенный брокер сообщений")
     System(api_2, "Stuff_API-Gateway")
     System(System, "Stuff_Web-site")
     System_Boundary(s7, "Domain: \nERP System") {
+        Container(subdomain_21, "Stuff-User account Service", Service, "Сервис учетной записи персонала" )
+        Container(subdomain_6, "\nProduct support", Service, "Сервис поддержки клиентов")
+        ContainerDb(db20, Database, Postgre SQL, "Хранит данные пользователей")
         Container(subdomain_8, "\nDelivery Service", Service, "Сервис осуществления доставки(Внутренний)")
         ContainerDb(db8, Database, Postgre SQL, "Хранит информацию по доставкам")
         Container(subdomain_9, "\nTracking Delivery Service", Service, "Сервис трекинга доставки")
-        ContainerDb(db9, Database, Postgre SQL, "Хранит информацию по статусам доставки")
+        Container(subdomain_3, "\nStorehouse Service", Service, "Сервис автоматизации складов (Внутренний)")
+        ContainerDb(db14, Database, Postgre SQL, "Хранит информацию по товарах на складе") 
     }
     System_Boundary(s2 , "Domain: \nCatalog of product System") {
         Container(subdomain_1, "\nCatalog Service", Service, "Сервис выбора товаров")
@@ -41,29 +53,19 @@ System_Boundary(s1 , "The Store's System") {
         Container(db_r2, Database, "Reddis")
     }
 
-    System_Boundary(s4, "Domain: \nInventory System") {
-        Container(subdomain_3, "\nStorehouse Service", Service, "Сервис автоматизации складов (Внутренний)")
-        ContainerDb(db14, Database, Postgre SQL, "Хранит информацию по товарах на складе") 
-    }
-
     System_Boundary(s5, "Domain: \nCRM System") {
-        Container(subdomain_4, "\nNotification Service", Service, "Сервис уведомлений пользователей" )
-        Container(subdomain_5, "\nAuthorization Service", Service, "Сервис Регистрации/Авторизации полльзователей в системе")
+        Container(subdomain_20, "User account Service", Service, "Сервис учетной записи пользователей" )
         ContainerDb(db16, Database, Postgre SQL/Slave, "Хранит Идентификационные данные пользователей")
         ContainerDb(db17, Database, Postgre SQL/Master, "Хранит Идентификационные данные пользователей")
-        Container(subdomain_6, "\nProduct support", Service, "Сервис поддержки клиентов")
     }
-
     System_Boundary(s6, "Domain: \nPayment System") {
         Container(subdomain_7, "\nPayment Service", Service, "Сервис платежей")
         ContainerDb(db7, Database, Postgre SQL, "Хранит информацию о проведенных/отложенных платежах")
     }
 }
-System_Boundary(s9, "\nIntegration System"){
-    Container(subdomain_10, "\nPartner Integration Service", Service, "Сервис интеграции с системой партнеров")
-}
 System_Boundary(s8, "Partner \nIntegration System") {
-    Container(subdomain_11, "\nTracking delivery Service", Service, "Внешняя система партнеров отвечающая за логику доставки пользователю")
+    Container(subdomain_11, "\nPartner's Service", Service, "Внешняя система партнеров отвечающая  за внешнюю доставку пользователю")
+    ContainerDb(db18, Database, "Хранение информации")
 }
 
 Person(Stuff, "Персонал-пользователи", $sprite="users")
@@ -73,22 +75,50 @@ Rel(users, subdomain_0, "Visits Example.com/Catalog")
 Rel(Stuff, System, "Visits Stuff.Example.com/Catalog")
 Rel(System, api_2, "Uses", "JSON/REST API")
 Rel(subdomain_0, api, "Uses", "JSON/REST API")
-Rel_D(api, subdomain_1, "Uses", "JSON/REST API")
-Rel_D(subdomain_1, db1, "DBS-модель чтения/SQL")
-Rel_D(subdomain_1, db3, "DBS-модель чтения/SQL")
-Rel_D(subdomain_1, db5, "DBS-модель чтения/SQL")
+Rel(subdomain_1, db1, "DBS-модель чтения")
+Rel(subdomain_1, db3, "DBS-модель чтения")
+Rel(subdomain_1, db5, "DBS-модель чтения")
 Rel_R(subdomain_1, db_r1, "Кэширование данных", "Redis")
 Rel_R(subdomain_2, db_r2, "Кэширование данных", "Redis")
-Rel(subdomain_2, db10, "DBS-модель чтения/SQL")
-Rel(subdomain_2, db12, "DBS-модель чтения/SQL")
-Rel(subdomain_8, db8, "DBS-модель чтения/SQL")
-Rel(subdomain_9, db9, "DBS-модель чтения/SQL")
-Rel(subdomain_5, db16, "DBS-модель чтения/SQL")
+Rel(subdomain_2, db10, "DBS-модель чтения")
+Rel(subdomain_2, db12, "DBS-модель чтения")
+Rel(subdomain_8, db8, "DBS-модель чтения")
+Rel(subdomain_20, db16, "DBS-модель чтения")
 Rel(db16, db17, "Uses")
 Rel(db10, db11, "Uses")
 Rel(db12, db13, "Uses")
-Rel_D(db1, db2, "Uses")
-Rel_D(db3, db4, "Uses")
-Rel_D(db5, db6, "Uses")
-Rel_D(subdomain_7, db7, "DBS-модель чтения/SQL")
+Rel(db1, db2, "Uses")
+Rel(db3, db4, "Uses")
+Rel(db5, db6, "Uses")
+Rel(subdomain_4, subdomain_20, "Uses", "JSON/REST API")
+Rel(subdomain_4, subdomain_21, "Uses", "JSON/REST API")
+Rel(subdomain_7, db7, "DBS-модель чтения")
+Rel(subdomain_11, db18, "DBS-модель чтения")
+Rel(subdomain_10, db19, "DBS-модель чтения")
+Rel(subdomain_10, subdomain_11, "Uses", "JSON/REST API")
+Rel(api_2, subdomain_5, "Uses", "JSON/REST API")
+Rel(subdomain_8, subdomain_9, "Uses", "JSON/REST API")
+Rel(subdomain_20, subdomain_1, "Uses", "JSON/REST API")
+Rel(subdomain_3, db14, "DBS-модель чтения")
+Rel(subdomain_6, db20, "DBS-модель чтения")
+Rel_R(subdomain_5, subdomain_20, "Uses", "JSON/REST API")
+Rel(subdomain_5, subdomain_21, "Uses", "JSON/REST API")
+Rel(subdomain_21, subdomain_6, "Uses", "JSON/REST API")
+Rel(subdomain_21, subdomain_8, "Uses", "JSON/REST API")
+Rel(subdomain_21, subdomain_3, "Uses", "JSON/REST API")
+Rel(subdomain_7, subdomain_10, "Uses", "JSON/REST API")
+Rel(api, subdomain_5, "Uses", "JSON/REST API")
+Rel(subdomain_7, subdomain_2, "Uses", "JSON/REST API")
+Rel(subdomain_2, subdomain_10, "Uses", "JSON/REST API")
+Rel(subdomain_3, subdomain_8, "Uses", "JSON/REST API")
+Rel(subdomain_1, Broker, "Kafka TLC")
+Rel(Broker, subdomain_7, "Kafka TLC")
+Rel(Broker, subdomain_3, "Kafka TLC")
+Rel(subdomain_8, Broker, "Kafka TLC")
+Rel(Broker, subdomain_20, "Kafka TLC")
+Rel(Broker, subdomain_4, "Kafka TLC")
+Rel(Broker, subdomain_10, "Kafka TLC")
+Rel(Broker, subdomain_2, "Kafka TLC")
+Rel(subdomain_9, Broker, "Kafka TLC")
+Rel(subdomain_6, Broker, "Kafka TLC")
 @enduml

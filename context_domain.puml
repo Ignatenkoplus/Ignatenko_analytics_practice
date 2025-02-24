@@ -7,6 +7,8 @@ header Basic Sale Leroy Merlin
 !include FONTAWESOME/users.puml
 
 Person(users, "Клиенты-пользователи", $sprite="users")
+Person(Stuff, "Персонал-пользователи", $sprite="users")
+
 System_Boundary(c1, "Система компании") {
     Container(s2, "Внутренняя система компании")
 }
@@ -14,4 +16,5 @@ System(s3, "Системы партнеров")
 
 Rel(users, s2, "Uses", "REST")
 Rel(s2, s3, "Uses", "REST")
+Rel(Stuff, s2, "Uses", "REST")
 @enduml

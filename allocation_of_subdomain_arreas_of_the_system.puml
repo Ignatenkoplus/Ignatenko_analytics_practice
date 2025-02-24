@@ -3,39 +3,36 @@ header Выделение поддоменных областей системы
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
 Enterprise_Boundary(s1 , "The Store's System") {
-    System_Boundary(s2 , "Domain: \nCatalog of product System", "Управление информацией о товарах, ценами, описаниями,\nассортиментом и наличием на складе") {
+    System_Boundary(s2 , "Domain: \nCatalog of product System") {
         Container(subdomain_1, "Subdomain: \nCatalog Service")
     }
-    
-    System_Boundary(s3, "Domain: \nOrder System", "Обработка заказов как из интернет-магазина,\nтак и из оффлайн торговых точек") {
+    System_Boundary(s3, "Domain: \nOrder System") {
         Container(subdomain_2, "Subdomain: \nOrder Service")
     }
-
-    System_Boundary(s4, "Domain: \nInventory System", "Управление собственными складами компании") {
-        Container(subdomain_3, "Subdomain: \nStorehouse Service")
+    System_Boundary(s5, "Domain: \nCRM System") {
+        Container(subdomain_6, "Subdomain: User account Service")
     }
-
-    System_Boundary(s5, "Domain: \nCRM System", "Управление информацией о клиентах,\nисториях покупок, программы лояльности") {
+    System_Boundary(s, "Domain: Authorization Service") {
         Container(subdomain_4, "Subdomain: \nNotification Service")
-        Container(subdomain_5, "Subdomain: \nAuthentication Service")
-        Container(subdomain_6, "Subdomain: \nCRM Service")
+        Container(subdomain_5, "Subdomain: \nAuthorization Service")
     }
-
-    System_Boundary(s6, "Domain: \nPayment System", "Обработка платежей, интеграция\nс платежными системами") {
+    System_Boundary(s6, "Domain: \nPayment System") {
         Container(subdomain_7, "Subdomain: \nPayment Service")
     }
-
-    System_Boundary(s7, "Domain: \nERP System", "Управление внутренними процессами") {
+    Enterprise_Boundary(s9, "\nIntegration System"){
+    Container(subdomain_10, "Domain: \nPartner Integration Service")
+    }
+    System_Boundary(s7, "Domain: \nERP System") {
         Container(subdomain_8, "Subdomain: \nDelivery Service")
         Container(subdomain_9, "Subdomain: \nTracking Delivery Service")
+        Container(subdomain_12, "Subdomain: Stuff_User account Service")
+        Container(subdomain_3, "Subdomain: \nStorehouse Service")
+        Container(subdomain_13, "Subdomain: Product support")
     }
 }
-Enterprise_Boundary(s9, "\nIntegration System"){
-    Container(subdomain_10, "Domain: \nPartner Integration Service")
-}
 Enterprise_Boundary(s8, "Partner \nIntegration System") {
-    Container(subdomain_11, "Domain: \nTracking delivery Service")
-}
+    Container(subdomain_11, "Domain: \nPartner Service")
+    }
 
 
 @enduml
