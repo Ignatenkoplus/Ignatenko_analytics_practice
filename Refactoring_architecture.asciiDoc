@@ -100,3 +100,6 @@ image:out/context_domain/Basic Sale.svg[context diagram]
 == Диаграмма контейнеров системы С-2
 
 image:out/container_diagram/Basic sale.svg[]
+
+== Диаграмма ER для реляционной модели 
+image:out/erd/erd.svg[]
