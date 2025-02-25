@@ -1,0 +1,68 @@
+@startuml erd 
+
+entity User {
+    user_id [PK] [AUTO_INCREMENT]
+    --
+    FIO: string 
+    Is_Stuff: boolean
+    email: string 
+    password: varchar(20)
+    avatar: blob 
+}
+
+entity Order {
+    order_id: bigint[PK] [AUTO_INCREMENT]
+    --
+    order_date: string 
+    status: string
+    order_price: decimal(10, 2)
+    --
+    user_id [FK]
+    delivery_id [FK] [AUTO_INCREMENT]
+}
+entity Inventary{
+    invent_id: bigint  [PK] [AUTO_INCREMENT]
+    --
+    name: string 
+    adress: string 
+}
+entity Delivery {
+    delivery_id [PK] [AUTO_INCREMENT]
+    --
+    delivery_status: string 
+    delivery_type: string 
+    delivery_date: datetime
+    --
+    path_id: bigint  [FK] [AUTO_INCREMENT]
+}
+entity Path{
+    path_id: bigint  [PK] [AUTO_INCREMENT]
+    --
+    distance: int 
+    date_of_path: datetime
+}
+entity Product {
+    product_id: bigint [PK] [AUTO_INCREMENT]
+    --
+    name: string 
+    price: decimal(10, 2)
+    description: string 
+    picture: BLOB
+    type_of_product: string 
+}
+entity Products_of_orders{
+    order_id: bigint[FK] [AUTO_INCREMENT] 
+    product_id: bigint [FK] [AUTO_INCREMENT]    
+}
+entity Product_in_inventary{
+   product_id: bigint [FK] [AUTO_INCREMENT]
+   invent_id: bigint  [FK] [AUTO_INCREMENT]  
+}
+User  ||--o{ Order 
+Product ||--|{ Products_of_orders
+Order ||--|{ Products_of_orders
+Delivery ||--|{ Order 
+Path ||--|{ Delivery  
+Product ||--|{ Product_in_inventary
+Inventary ||--|{ Product_in_inventary
+@enduml
