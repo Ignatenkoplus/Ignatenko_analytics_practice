@@ -1,0 +1,12 @@
+@startuml Status model 
+
+[*] --> New : create
+New --> Confirmed : confirm
+Confirmed --> Processing : start processing
+Processing --> Shipped : ship
+Shipped --> Delivered : deliver
+Delivered --> Completed : complete
+Processing --> Cancelled : cancel
+Shipped --> Cancelled : cancel
+
+@enduml
